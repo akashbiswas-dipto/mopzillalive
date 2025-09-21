@@ -1,0 +1,13 @@
+# Ignore git and local files
+.git/
+.vscode/
+node_modules/
+*.log
+*.bak
+*.zip
+
+# Include only files we need
+!index.php
+!app.yaml
+!Controller/**
+!Public/**
