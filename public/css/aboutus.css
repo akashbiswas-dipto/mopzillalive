@@ -1,0 +1,100 @@
+@import url('font.css');
+
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('/mopzilla/public/content/aboutus1.jpg');
+    background-size:contain;
+    background-position:bottom;
+    background-repeat: repeat-x;
+}
+
+.aboutus{
+    height: 90vh;
+    width: 100%;
+    text-align: center;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.aboutus h1{
+    color:  #234f1E !important;
+    padding-top: 50px;
+    font-size: 100px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.aboutus p{
+    color:  #234f1E;
+    font-size: 30px;
+    font-weight: 600;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.aboutus a{
+    text-decoration: none;
+    color: #234f1E;
+}
+
+.aboutus a:hover{
+    color: black;
+    transition-duration: .2s;
+}
+.description{
+    width: 50%;
+    margin: 40px 25%;
+    height: 700px;
+    padding-top: 0;
+    background-image: url('/mopzilla/public/content/whychoseusbg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 25px;
+    
+}
+
+.description h1{
+    margin: 0 25%;
+    font-size: 80px;
+    font-weight: 600;
+    line-height: 1;
+    color: antiquewhite !important;
+}
+
+.description p{
+    margin: 20px 15%;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: antiquewhite;
+}
+
+.support{
+    width: 80%;
+    margin: 10px 10%;
+}
+
+.support .icon{
+    padding: 20px 10px;
+    text-align: center;
+    width: 40%;
+    margin: 30px 5%;
+    float: left;
+    border-radius: 15px;
+    background-color: antiquewhite;
+}
+
+.icon h5, .icon p{
+    margin: 10px 0;
+    padding: 0;
+    color: #234f1E !important;
+}
+.icon img{
+    width: 50px;
+    height: auto;
+}
+
+.icon:hover{
+    border: 2px solid #234f1E;
+    transition-duration: .1s;
+}

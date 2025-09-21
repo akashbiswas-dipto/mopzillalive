@@ -1,0 +1,114 @@
+@import url('font.css');
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('/mopzilla/public/content/background_home1.jpg');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.tagline{
+    width: 100%;
+    padding: 20px 30px;
+    height: 90vh;
+}
+
+.tagline h1{
+    color: white;
+    font-size: 180px;
+    font-weight: 700;
+    padding-top: 150px;
+    
+}
+
+.whychoseus{
+    width: 100%;
+    height: 600px;
+    background-color: white !important; 
+    text-align: center;  
+}
+
+.whychoseus H1{
+    padding-top: 20px;
+    font-size: 60px;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.whychoseus .content{
+    width: 70%;
+    height: 400px;
+    float: left;
+    text-align: center;
+    margin:  0 15%;
+}
+
+.reason{
+    width: 15%;
+    height: 300px;
+    float: left;
+    margin: 0 2.5%;
+    border-radius: 20px;
+}
+
+.reason img{
+    width: 30%;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+
+.reason h5{
+    color: #234f1E
+}
+
+.believe{
+    width: 100%;
+    height: 600px;
+    background-color: white !important;
+}
+
+.message{
+    width: 40%;
+    height: 400px;
+    margin: auto;
+    text-align: center;
+    background-image: url('/mopzilla/public/content/whychoseusbg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50px;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.message h1{
+    padding-top: 50px;
+    font-size: 50px;
+    font-family: "Roboto Condensed", sans-serif;
+    color: white;
+    margin: 0 20%;
+}
+
+.message p{
+    color: white;
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+    margin: 20px 10%;
+    padding-top: 20px;
+    line-height: 1.5;
+}
+
+.message a{
+    margin-top: 50px;
+    padding: 10px 20px;
+    background-color: #234f1E !important;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+.message a:hover {
+    color: #234f1E !important;
+    background-color: white !important;
+    transition: color 0.4s ease, transform 0.3s ease;
+}

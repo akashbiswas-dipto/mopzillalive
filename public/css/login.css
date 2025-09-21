@@ -1,0 +1,56 @@
+body{
+    background-image: url('/mopzilla/public/content/whychoseusbg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+
+}
+.login{
+    background-color: white;
+    width: 700px;
+    border-radius: 20px;
+    height: 500px;
+    margin: 100px auto;
+    text-align: center;
+}
+.login_logo{
+    width: 100px;
+    height: auto;
+    margin-top: 10px;
+}
+
+.login h1{
+    font-size: 40px;
+    margin: 20px 60px;
+}
+
+.login input{
+    width: 400px;
+    height: 40px;
+    margin: 10px 0 10px 0;
+    border-radius: 15px;
+    border: 2px solid #234f1E;
+    text-align: center;
+}
+
+.login button{
+    width: 200px;
+    height: 40px;
+    margin-top: 30px;
+    background-color:white ;
+    color: #234f1E;
+    border: 2px solid #234f1E;
+    border-radius: 15px;
+}
+
+.login button:hover{
+    background-color: #234f1E;
+    color: white;
+    transition-duration: .2s;
+}
+
+.register{
+    margin-top: 20px !important;
+}

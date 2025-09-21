@@ -1,0 +1,111 @@
+.box{
+    width: 70%;
+    margin: auto;
+}
+
+.button_add{
+    width: 100%;
+    height: 50px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.addmemberbutton{
+    text-decoration: none;
+    width: 200px;
+    height: 40px;
+    margin-top: 30px;
+    padding: 5px 15px;
+    background-color:white ;
+    color: #234f1E;
+    border: 2px solid #234f1E;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+
+.addmemberbutton:hover{
+    background-color: #234f1E;
+    color: white;
+    transition-duration: .2s;
+}
+
+.list_team{
+    margin-top: 40px;
+}
+
+.card{
+    margin:  auto !important;
+    text-align: center !important;
+    border: none !important;
+    
+}
+
+.card .card-img-top{
+    width: 200px !important;
+    height: 200px !important;
+    border-radius: 50% !important;
+    display: block;          /* make image block */
+    margin: 5px auto;          /* center horizontally */
+    object-fit: cover;
+
+}
+
+.card .list-group{
+    border: 2px solid #234f1E !important; 
+    border-radius: 10px !important; 
+    color: #234f1E !important;
+}
+
+.card li{
+    color: #234f1E !important;
+}
+
+.card .card-body a{
+    color: #234f1E !important;
+    text-decoration: none !important;
+    padding: 5px 10px !important;
+    border-radius: 10px !important;
+    border: 2px solid #234f1E !important;
+
+}
+
+.card .card-body a:hover{
+    color: white !important;
+    background-color: #234f1E !important;
+    transition-duration: .2s !important;
+    padding: 5px 10px !important;
+    border-radius: 10px !important;
+
+}
+
+.box input, select{
+    width: 400px;
+    height: 40px;
+    margin: 10px 0 10px 0;
+    border-radius: 15px;
+    border: 2px solid #234f1E;
+    text-align: center;
+}
+
+.box button{
+    width: 200px;
+    height: 40px;
+    margin-top: 30px;
+    background-color:white ;
+    color: #234f1E;
+    border: 2px solid #234f1E;
+    border-radius: 15px;
+}
+
+.box button:hover{
+    background-color: #234f1E;
+    color: white;
+    transition-duration: .2s;
+}
+
+.box option:checked{
+    background-color: #234f1E;
+    color: white;
+    transition-duration: .2s;
+}

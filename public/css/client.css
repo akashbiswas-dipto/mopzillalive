@@ -1,0 +1,49 @@
+.box{
+    width: 70%;
+    margin: auto;
+}
+
+.task-status-btn {
+            padding: 5px 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 0 !important ;
+        }
+
+        .inactive-task {
+            padding: 5px 10px;
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .task-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 999;
+            min-width: 250px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 5px;
+        }
+
+        .task-dropdown ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .task-dropdown ul li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .relative-wrapper {
+            position: relative;
+        }

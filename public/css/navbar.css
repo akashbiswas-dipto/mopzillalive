@@ -1,0 +1,56 @@
+@import url('font.css');
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto Condensed", sans-serif;
+        position: sticky;
+    top: 0;
+}
+.navbar{
+    width: 100%;
+    height: auto;
+
+}
+
+.container{
+    margin: 0 200px !important;
+}
+.icon{
+    width: 30%;
+    text-align: left;
+    float: left;
+}
+
+.navbar-brand{
+    text-align: left;
+}
+.nav-link{
+    color: black !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 22px;
+    border-radius: 35px;
+    padding: 0 35px !important;
+}
+
+.nav-link:hover {
+    color: white !important;
+    background-color: #234f1E !important;
+    transition: color 0.4s ease, transform 0.3s ease
+}
+
+.nav-link-menu{
+    color: #234f1E !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 22px;
+    border-radius: 35px;
+    padding: 5px 35px !important; 
+    background-color: white !important;
+} 
+
+.nav-link-menu:hover {
+    color: white !important;
+    background-color: #234f1E !important;
+    transition: color 0.4s ease, transform 0.3s ease
+}
