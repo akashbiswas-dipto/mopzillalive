@@ -54,3 +54,28 @@ body{
 .register{
     margin-top: 20px !important;
 }
+
+@media (max-width: 767px){
+
+    body{
+        height: 100vh;
+    }
+    .login{
+        width: 80% !important;
+        margin: 33% auto;
+        height: auto;
+    }
+
+    .login h1{
+        margin: 20px auto;
+        font-size: 25px;
+    }
+
+    .login input{
+        width: 90%;
+    }
+
+    .login button{
+        margin: 20px auto;
+    }
+}

@@ -17,7 +17,7 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] === '1' || $_SESSION['
             <?php 
                 if(isset($_SESSION['usertype']) && $_SESSION['usertype'] === '1') { ?>
             <div class="button_add">
-                <a href="addtask.php" class="addmemberbutton">Add Task</a> 
+                <a href="addtask" class="addmemberbutton">Add Task</a> 
             </div><?php 
             } ?>
             <div class="list_team">
@@ -148,7 +148,7 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] === '1' || $_SESSION['
     <?php
 }
 else {
-    header("Location: /mopzilla/public/views/team_dashboard/team_dashboard.php");
+    header("Location: /mopzilla/public/views/team_dashboard/team_dashboard");
     exit();
 }
 ?>

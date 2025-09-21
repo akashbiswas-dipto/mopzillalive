@@ -26,10 +26,10 @@ if(isset($_POST['update_task'])){
         $team_member2 = $_POST['team_member2'];
         $sql = "UPDATE tasklist SET status='$status', team_member1='$team_member1', team_member2='$team_member2' WHERE sl='$task_id'";
         if (mysqli_query($conn, $sql)) {
-            header("Location: ../public/views/team_dashboard/tasklist.php?success=Task updated successfully");
+            header("Location: ../public/views/team_dashboard/tasklist?success=Task updated successfully");
             exit();
         } else {
-            header("Location: ../public/views/team_dashboard/tasklist.php?error=Error updating task: ");
+            header("Location: ../public/views/team_dashboard/tasklist?error=Error updating task: ");
             exit();
         }
     }
@@ -40,10 +40,10 @@ if(isset($_POST["delete_task"])){
         $task_id = $_POST['delete_task'];
         $sql = "DELETE FROM tasklist WHERE sl='$task_id'";
         if (mysqli_query($conn, $sql)) {
-            header("Location: ../public/views/team_dashboard/tasklist.php?success=Task deleted successfully");
+            header("Location: ../public/views/team_dashboard/tasklist?success=Task deleted successfully");
             exit();
         } else {
-            header("Location: ../public/views/team_dashboard/tasklist.php?error=Error deleting task: ");
+            header("Location: ../public/views/team_dashboard/tasklist?error=Error deleting task: ");
             exit();
         }
     }
@@ -85,7 +85,7 @@ function addTask($secret_key, $conn, $formData) {
                 VALUES ('" . $customername . "','" . $customercontact . "', '" . $formData['customeraddress'] . "','$user_id','1','1')";
 
         if (!mysqli_query($conn, $sql)) {
-            header("Location: ../public/views/team_dashboard/addtask.php?error=Client creation failed.");
+            header("Location: ../public/views/team_dashboard/addtask?error=Client creation failed.");
             exit();
         }
     }
@@ -116,10 +116,10 @@ function addTask($secret_key, $conn, $formData) {
     }
 
     if ($success) {
-        header("Location: ../public/views/team_dashboard/tasklist.php?success=Tasks added successfully");
+        header("Location: ../public/views/team_dashboard/tasklist?success=Tasks added successfully");
         exit();
     } else {
-        header("Location: ../public/views/team_dashboard/addtask.php?error=Error adding tasks");
+        header("Location: ../public/views/team_dashboard/addtask?error=Error adding tasks");
         exit();
     }
 }

@@ -21,7 +21,7 @@
                 <div class="row">
                     <?php if($userData && count($userData) > 0):
                     foreach($userData as $user):?>
-                    <div class="col-md-2-4 mb-4" style="flex: 0 0 20%; max-width: 20%;">
+                    <div  class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="../../<?php echo $user['idpic'];?>" alt="Card image cap">
                             <ul class="list-group list-group-flush">
@@ -54,5 +54,5 @@
 <?php }
     
 else{
-    header("Location: /mopzilla/public/views/team_dashboard/team_dashboard.php");
+    header("Location: /mopzilla/public/views/team_dashboard/team_dashboard");
 } ?>

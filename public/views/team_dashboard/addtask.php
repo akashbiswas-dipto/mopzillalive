@@ -37,5 +37,5 @@
 </html>
 <?php }
 else{
-    header("Location: /mopzilla/public/views/team_dashboard.php");
+    header("Location: /mopzilla/public/views/team_dashboard");
 } ?>

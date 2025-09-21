@@ -71,3 +71,9 @@ h4 {
     background-color: #234f1E;
     color: white;
 }
+
+@media (max-width: 767px){
+.box{
+    width: 90%;
+}
+}

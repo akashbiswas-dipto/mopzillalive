@@ -1,0 +1,16 @@
+RewriteEngine On
+RewriteBase /mopzilla/
+
+# Don't rewrite existing files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rewrite clean URLs with subfolders to .php
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+# Optional: Redirect index.php to root
+RewriteRule ^index\.php$ /mopzilla/ [R=301,L]
+
+# Optional: Custom 404 page
+ErrorDocument 404 /mopzilla/404.php

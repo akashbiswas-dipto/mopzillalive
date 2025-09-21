@@ -109,3 +109,20 @@
     color: white;
     transition-duration: .2s;
 }
+
+
+@media (max-width: 767px){
+
+    .box{
+        width: 90%;
+        text-align: center;
+    }
+    .button_add{
+        height: 35px;
+        margin-bottom: 0;
+    }
+    
+   .box input, select{
+    width: 100%;
+   } 
+}
