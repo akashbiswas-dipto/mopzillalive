@@ -274,7 +274,7 @@ function getclientData($conn, $user_id){
 }
 
 function getallclientData($conn) {
-    $sql = "SELECT * FROM client";
+    $sql = "SELECT * FROM client Order By customer_id ASC";
     $result = mysqli_query($conn, $sql);
 
     $clients = [];

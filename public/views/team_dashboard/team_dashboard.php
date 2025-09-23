@@ -44,7 +44,7 @@
                     <p class="card-text">Clients</p>
                 </div>
                 <div class="card-body">
-                    <a href="#" class="card-link">View Client List</a>
+                    <a href="clientlist" class="card-link">View Client List</a>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">

@@ -1,5 +1,5 @@
 .box{
-    width: 70%;
+    width: 95%;
     margin: auto;
 }
 
@@ -8,6 +8,35 @@
     height: 50px;
     margin-top: 40px;
     text-align: left;
+}
+
+.filter_select{
+    width: 300px;
+    height: auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.filter_select option:hover{
+    background-color: #234f1E !important;
+    color: white !important;
+}
+.filter_button{
+    margin-bottom: 10px;
+}
+
+.filter_button button{
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    border: 1px solid #234f1E;
+    border-radius: 10px;
+}
+
+.filter_button button:hover{
+    background-color: #234f1E;
+    color: white;
+    transition-duration: .2s;
 }
 
 .addmemberbutton{
@@ -29,30 +58,38 @@
     transition-duration: .2s;
 }
 
+.all-tables-container {
+            max-height: 70vh; /* adjust as needed */
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
 table {
-    width: 100% !important;
-}
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px; /* spacing between weeks */
+        }
+        th, td {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+        }
 
-table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-    vertical-align: top;
-    word-wrap: break-word;        
-    overflow-wrap: break-word;    
-    white-space: normal; 
-}
+        td select{
+            width: auto;
+            height: auto;
+            padding: 5px 10px !important;
+            border-radius: 10px;
+        }
+        thead {
+            background-color: #f2f2f2;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        h4 {
+            margin: 10px 0 5px;
+        }
 
-table th {
-    background-color: #f4f4f4 !important;
-    font-weight: bold !important;
-}
-
-h4 {
-    margin-top: 30px !important;
-    font-size: 20px !important;
-    color: #234f1E !important;
-}
 .task-buttons {
     display: inline-block;
     background-color: white;
@@ -71,6 +108,59 @@ h4 {
     background-color: #234f1E;
     color: white;
 }
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+    width: fit-content;
+    background-color: #234f1E;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* Dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Dropdown items */
+.dropdown-content button {
+    width: 100%;
+    padding: 8px 12px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.dropdown-content button:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change button color when hovered */
+.dropdown:hover .dropbtn {
+    background-color: #1d3f16;
+}
+
 
 @media (max-width: 767px){
 .box{

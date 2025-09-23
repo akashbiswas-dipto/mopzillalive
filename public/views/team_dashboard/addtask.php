@@ -24,7 +24,7 @@
                 </select><br>
                 <input type="text" name="hour" placeholder="Working Hour" required><br>        
                 <input type="text" name="hourrate" placeholder="Working Hour Rate" required><br>        
-                <input type="textarea" name="customer_note" placeholder="Customer Note" required><br>  
+                <input type="textarea" name="customer_note" placeholder="Customer Note"><br>  
                 <input type="datetime-local" name="date" placeholder="Date" required><br>         
                 <select id="status" name="status" required>
                     <option value="" disabled selected hidden>-- Choose Status--</option>

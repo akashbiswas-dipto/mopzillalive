@@ -13,7 +13,7 @@ if(isset($_POST["add_task"])){
             'customer_note'=>$_POST['customer_note'],
             'date'=>$_POST['date'],
             'status'=>$_POST['status']
-        ];                 
+        ];
         addTask( $secret_key,$conn,$formData );
     }
 }
@@ -24,7 +24,8 @@ if(isset($_POST['update_task'])){
         $status = $_POST['status'];
         $team_member1 = $_POST['team_member1'];
         $team_member2 = $_POST['team_member2'];
-        $sql = "UPDATE tasklist SET status='$status', team_member1='$team_member1', team_member2='$team_member2' WHERE sl='$task_id'";
+        $date=$_POST['work_date'];
+        $sql = "UPDATE tasklist SET work_date='$date', status='$status', team_member1='$team_member1', team_member2='$team_member2' WHERE sl='$task_id'";
         if (mysqli_query($conn, $sql)) {
             header("Location: ../public/views/team_dashboard/tasklist?success=Task updated successfully");
             exit();
@@ -35,12 +36,70 @@ if(isset($_POST['update_task'])){
     }
 }
 
+if (isset($_POST['update_task_all'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $client_id = $_POST['client_id'];
+        $status = $_POST['status'];
+        $team_member1 = $_POST['team_member1'];
+        $team_member2 = $_POST['team_member2'];
+        $date = $_POST['work_date'];
+        $worktype = $_POST['work_type']; // make sure you're posting this too
+
+        $startDate = new DateTime($date);
+        $intervalSpec = ($worktype == '1') ? 'P1W' : 'P2W';  // Weekly or Fortnightly
+        $interval = new DateInterval($intervalSpec);
+        $endDate = clone $startDate;
+        $endDate->modify('+3 months');
+
+        $success = true;
+        $currentDate = clone $startDate;
+
+        while ($currentDate <= $endDate) {
+            $work_date = $currentDate->format('Y-m-d H:i:s');
+
+            $sql = "UPDATE tasklist 
+                    SET work_date='$work_date', status='$status', team_member1='$team_member1', team_member2='$team_member2' 
+                    WHERE client_id='$client_id' AND work_date='$work_date'";
+
+            if (!mysqli_query($conn, $sql)) {
+                $success = false;
+                break;
+            }
+
+            $currentDate->add($interval);
+        }
+
+        if ($success) {
+            header("Location: ../public/views/team_dashboard/tasklist?success=Tasks updated successfully");
+            exit();
+        } else {
+            header("Location: ../public/views/team_dashboard/addtask?error=Error updating tasks");
+            exit();
+        }
+    }
+}
+
+
 if(isset($_POST["delete_task"])){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $task_id = $_POST['delete_task'];
         $sql = "DELETE FROM tasklist WHERE sl='$task_id'";
         if (mysqli_query($conn, $sql)) {
             header("Location: ../public/views/team_dashboard/tasklist?success=Task deleted successfully");
+            exit();
+        } else {
+            header("Location: ../public/views/team_dashboard/tasklist?error=Error deleting task: ");
+            exit();
+        }
+    }
+}
+
+if(isset($_POST["delete_task_all"])){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $client_id = $_POST['client_id'];
+        $sql = "DELETE FROM tasklist WHERE client_id='$client_id'";
+        if (mysqli_query($conn, $sql)) {
+            header("Location: ../public/views/team_dashboard/tasklist?success=Tasks deleted successfully");
             exit();
         } else {
             header("Location: ../public/views/team_dashboard/tasklist?error=Error deleting task: ");
@@ -59,7 +118,6 @@ function addTask($secret_key, $conn, $formData) {
     $customer_note = $formData['customer_note'];
     $date = $formData['date']; // string date format
     $status = $formData['status'];
-
     // Check if client exists
     $sql = "SELECT * FROM client WHERE contact='$customercontact' LIMIT 1";
     $result = mysqli_query($conn, $sql);
@@ -95,7 +153,7 @@ function addTask($secret_key, $conn, $formData) {
     $intervalSpec = ($worktype == '1') ? 'P1W' : 'P2W';  // P1W = 1 week, P2W = 2 weeks (fortnightly)
     $interval = new DateInterval($intervalSpec);
     $endDate = clone $startDate;
-    $endDate->modify('+1 year');
+    $endDate->modify('+3 months');
 
     // Insert tasks for the whole year
     $success = true;
@@ -114,7 +172,6 @@ function addTask($secret_key, $conn, $formData) {
 
         $currentDate->add($interval);
     }
-
     if ($success) {
         header("Location: ../public/views/team_dashboard/tasklist?success=Tasks added successfully");
         exit();
@@ -129,7 +186,7 @@ function addTask($secret_key, $conn, $formData) {
 
 function getTaskData($conn, $usertype){
     if($usertype == 1){
-        $sql="select * from tasklist";
+        $sql="select * from tasklist Order By work_date ASC";
         $result=mysqli_query($conn,$sql);
         $taskData=array();
         if($result && mysqli_num_rows($result)>0){
@@ -155,7 +212,7 @@ function getTaskData($conn, $usertype){
 }
 
 function getTasksDataByClient($conn, $clientid){
-    $sql="select * from tasklist where client_id='$clientid'";
+    $sql="select * from tasklist where client_id='$clientid' Order By work_date ASC";
     $result=mysqli_query($conn,$sql);
     $taskData=array();
     if($result && mysqli_num_rows($result)>0){
