@@ -44,7 +44,6 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
                 $clients = mysqli_query($conn, "SELECT * FROM client ORDER BY name ASC");
                 
                 while ($client = mysqli_fetch_assoc($clients)) {
-                    print_r($client);
                     echo "<option value='{$client['customer_id']}'>{$client['name']}</option>";
                 }
                 ?>

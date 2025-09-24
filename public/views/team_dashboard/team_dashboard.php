@@ -31,7 +31,7 @@
                     <p class="card-text">Tasks - This Week</p>
                 </div>
                 <div class="card-body">
-                    <a href="tasklist" class="card-link">View Task List</a>
+                    <a href="tasklist.php" class="card-link">View Task List</a>
                 </div>
             </div>
             <?php 

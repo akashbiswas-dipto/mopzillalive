@@ -1,19 +1,16 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
     // Localhost settings
-    $base_url  = "http://localhost/mopzilla/";
-    define("BASE_PATH", $_SERVER['DOCUMENT_ROOT']."/mopzilla/");
-
     $db_host = "localhost";         // usually localhost
     $db_user = "root";              // your local DB user
     $db_pass = "";                  // your local DB password (often empty in XAMPP)
     $db_name = "mopzilla";    // your local database name
 } else {
     // Live server settings
-    $base_url  = "https://mop-zilla.com/";
-    define("BASE_PATH", $_SERVER['DOCUMENT_ROOT']."/");
 
     $db_host = "localhost";          // usually localhost for cPanel MySQL
     $db_user = "mopzilla_adminakash"; // your live DB username

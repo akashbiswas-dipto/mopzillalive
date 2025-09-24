@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<?php session_start();
+<?php 
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Define BASE_PATH only if not already defined
+if (!defined('BASE_PATH')) {
     if ($_SERVER['HTTP_HOST'] == 'localhost') {
-    $base_url = "http://localhost/mopzilla/"; 
-    define("BASE_PATH", $_SERVER['DOCUMENT_ROOT']."/mopzilla/");
+        $base_url = "http://localhost/mopzilla/";
+        define("BASE_PATH", $_SERVER['DOCUMENT_ROOT']."/mopzilla/");
     } else {
-        $base_url = "https://mop-zilla.com/"; 
+        $base_url = "https://mop-zilla.com/";
         define("BASE_PATH", $_SERVER['DOCUMENT_ROOT']."/");
     }
-    include_once(BASE_PATH."controller/authController.php");
-    include_once(BASE_PATH."controller/taskController.php");
+}
+
+// Include controllers
+include_once(BASE_PATH . "controller/authController.php");
+include_once(BASE_PATH . "controller/taskController.php");
 if(isset($_SESSION['usertype']) && ($_SESSION['usertype'] == 1 || $_SESSION['usertype'] == 2)){
 $userData=getuserData($conn);
 $clientallData=getallclientData($conn);

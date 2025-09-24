@@ -112,3 +112,104 @@ body{
     background-color: white !important;
     transition: color 0.4s ease, transform 0.3s ease;
 }
+
+@media (max-width: 767px){
+    body{
+        background-image: url('../content/choseus.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-attachment: fixed; /* <-- keeps the image fixed during scroll */
+        background-position: center top;
+        height: fit-content;
+    }
+
+    .tagline{
+    width: 100%;
+    padding: 20px 30px;
+    height: 60vh;
+    
+    }
+
+    .tagline h1{
+        font-size: 60px;
+        padding-top: 100px;
+        text-align: center;
+        
+    }
+
+    .tagline h1 span{
+        color: orange !important;
+    }
+       .whychoseus {
+        height: 170vh; /* let it expand based on content */
+        padding: 20px 15px;
+        overflow: visible; /* ensure no content is hidden */
+    }
+
+    .whychoseus .content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+        gap: 15px;
+        justify-items: center;
+    }
+
+    .whychoseus .reason {
+        width: 100%;
+        height: auto; /* auto so it expands with text */
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        text-align: center;
+        position: relative; /* needed for proper stacking */
+    }
+
+    .whychoseus h1{
+        font-size: 30px;
+        padding-top: 10px;
+    }
+
+    /* Reason content adjustments for mobile */
+    .whychoseus .reason img {
+        width: 50px;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .whychoseus .reason h5 {
+        font-size: 1rem;
+    }
+
+    .whychoseus .reason p {
+        font-size: 0.85rem;
+    }
+    .believe {
+            padding: 40px 15px;    /* spacing inside container */
+            clear: both;           /* prevents overlap */
+            position: relative;
+            z-index: 1;
+        }
+
+        .message {
+            width: 90%;            /* full width on mobile */
+            height: auto;          /* height adjusts with content */
+            padding: 20px;         /* padding for inner spacing */
+            border-radius: 20px;   /* slightly smaller radius */
+        }
+
+        .believe .message h1 {
+            font-size: 1.5rem;     /* smaller heading for mobile */
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .believe .message p {
+            font-size: 0.9rem;     /* smaller paragraph text */
+            margin-bottom: 15px;
+        }
+
+        .believe .message a {
+            padding: 8px 16px;     /* smaller button for mobile */
+            font-size: 0.9rem;
+        }
+}

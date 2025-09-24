@@ -162,8 +162,70 @@ table {
 }
 
 
-@media (max-width: 767px){
-.box{
-    width: 90%;
-}
+@media (max-width: 767px) {
+    .box {
+        padding: 10px;
+    }
+
+    .button_add a{
+        padding: 5px 10px;
+    }
+    /* Filter section */
+    .filter_button label,
+    .filter_button select,
+    .filter_button button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* Table container scroll */
+    .list_team table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    }
+
+    .list_team table th,
+    .list_team table td {
+        padding: 8px 5px;
+        font-size: 0.85rem;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    /* Dropdown buttons and actions */
+    .dropdown .dropbtn {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+
+    .dropdown .dropdown-content button {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    /* Inputs inside table */
+    .list_team input,
+    .list_team select {
+        width: 100%;
+        font-size: 0.85rem;
+        padding: 4px;
+    }
+
+    /* Headings */
+    .all-tables-container h4 {
+        font-size: 1rem;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    /* Action buttons */
+    .addmemberbutton {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        padding: 8px 0;
+    }
 }
