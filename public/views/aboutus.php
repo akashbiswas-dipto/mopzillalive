@@ -1,12 +1,12 @@
-
+<?php include_once('navbar.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/mopzilla/public/css/aboutus.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>public/css/aboutus.css">
     <title>About Us- Mopzilla</title>
-    <?php include_once('navbar.php') ?>
+
 </head>
 <body>
     <div class="aboutus">
@@ -19,12 +19,12 @@
                 a safe and healthy environment for you.</p>
             <div class="support">
                 <div class="icon">
-                    <img src="/mopzilla/public/content/home.png" alt="Support Icon">
+                    <img src="<?php echo $base_url;?>public/content/home.png" alt="Support Icon">
                     <h5>House Cleaning</h5>
                     <p>Apartment, condos, and houses - busy people who want their home to feel fresh again.</p>
                 </div>
                 <div class="icon">
-                    <img src="/mopzilla/public/content/broom.png" alt="Support Icon">
+                    <img src="<?php echo $base_url;?>public/content/broom.png" alt="Support Icon">
                     <h5>Office Cleaning</h5>
                     <p>Maintain a clean, healthy workspace that supports productivity and professionalism.</p>
                 </div>

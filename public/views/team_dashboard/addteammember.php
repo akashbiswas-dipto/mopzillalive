@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/mopzilla/public/css/teamlist.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>public/css/teamlist.css">
     <title>Add member- Mopzilla</title>
 </head>
 <body>
@@ -34,5 +34,5 @@
 </html>
 <?php }
 else{
-    header("Location: /mopzilla/public/views/team_dashboard");
+    header("Location: /mopzilla/public/views/team_dashboard.php");
 } ?>

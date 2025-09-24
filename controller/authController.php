@@ -1,4 +1,6 @@
-<?php include_once("database.php"); 
+<?php 
+
+include_once("database.php"); 
 
 if (isset($_POST['team_login'])){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -23,6 +25,7 @@ if(isset($_POST['customer_login'])){
 }
 
 if (isset($_GET['WorkType'])=='Logout'){
+    global $base_url;
     echo 'i am in logout';
     session_start();
     $_SESSION = [];
@@ -42,10 +45,11 @@ if (isset($_GET['WorkType'])=='Logout'){
         setcookie($name, '', time() - 3600, '/');
     }
     }
-    header('Location: ../public/views/login_user');
+    header("location:".$base_url."public/views/login_user.php");
 }
 
 if(isset($_POST['register']) && $_SERVER["REQUEST_METHOD"] == "POST"){
+    global $base_url;
         $formData=[
             "name"=>$_POST["full_name"],
             "address"=>$_POST["address"],
@@ -56,7 +60,7 @@ if(isset($_POST['register']) && $_SERVER["REQUEST_METHOD"] == "POST"){
         $sql= "SELECT * FROM client WHERE email='".$formData['email']."' Limit 1";
         $result = mysqli_query($conn, $sql);
         if ($result && $result->num_rows > 0) {
-            header("Location: ../public/views/login?error=User already exists");
+            header("location:".$base_url."public/views/login.php?error=User already exists");
             exit();
         }
         else{
@@ -66,10 +70,11 @@ if(isset($_POST['register']) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 if(isset($_POST['add_team_member']) && $_SERVER["REQUEST_METHOD"] == "POST"){
+    global $base_url;
         if (!isset($_FILES['idpic']) || $_FILES['idpic']['error'] !== UPLOAD_ERR_OK) {
         die("❌ No file uploaded or upload error.");
         }
-        $targetDir = __DIR__ . "/../public/content/teammember/";  // absolute server path
+        $targetDir = $base_url."public/content/teammember/";  // absolute server path
         if (!is_dir($targetDir)) {
             mkdir($targetDir, 0777, true);
         }
@@ -111,6 +116,7 @@ if(isset($_POST['add_team_member']) && $_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 function CreateCustomer( $secret_key_customer, $conn,$formData ) {
+    global $base_url;
     $newpass=$secret_key_customer.$formData['password'];
     $hash_password = md5($newpass);
     $sql="select * from client";
@@ -128,7 +134,7 @@ function CreateCustomer( $secret_key_customer, $conn,$formData ) {
     $sql = "INSERT INTO client (name, email, password, contact, address,customer_id,customer_type,promo_available) 
             VALUES ('".$formData['name']."', '".$formData['email']."', '$hash_password', '".$formData['contact']."', '".$formData['address']."','$user_id','1','1')";    
     if (mysqli_query($conn, $sql)) {
-        header("Location: ../public/views/login?success=Registration successful. Please log in.");
+        header("location:".$base_url."public/views/login.php?success=Registration successful. Please log in.");
         exit();
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -136,13 +142,14 @@ function CreateCustomer( $secret_key_customer, $conn,$formData ) {
 }
 
 function loginCustomer($secret_key, $conn, $formData){
+    global $base_url;
     $email=$formData["email"];
     $password=$formData["password"];
     $hash_password = md5("Tanmay@123");
     $sql = "SELECT * FROM client WHERE email='$email' Limit 1";
     $result = mysqli_query($conn, $sql);
     if($result && $result->num_rows == 0){
-        header("Location: ../public/views/login?error=Invalid Username or Password");
+        header("location:".$base_url."public/views/login.php?error=Invalid Username or Password");
     }
     else{
         $user=$result->fetch_assoc();
@@ -152,16 +159,16 @@ function loginCustomer($secret_key, $conn, $formData){
             $_SESSION['customer_id'] = $user['customer_id'];
             $_SESSION['customer_name'] = $user['name'];
             $_SESSION['customer_email'] = $user['email'];
-            header("Location: ../public/views/customer_dashboard/customer_dashboard");
+            header("location:".$base_url."public/views/customer_dashboard/customer_dashboard.php");
             exit();
         } else {
-            echo $hash_password;
-            //header("Location: ../public/views/login.php?error=Invalid Password");
+            header("location:".$base_url."public/views/login.php?error=Invalid Password");
         }
     }
 }
 
 function addTeamMember($secret_key,$conn, $formData) {
+    global $base_url;
     $username =$formData['team_username'];
     $password = $formData['team_password'];
     $email = $formData['team_email'];
@@ -175,7 +182,7 @@ function addTeamMember($secret_key,$conn, $formData) {
     $result = mysqli_query($conn, $sql);
 
     if ($result && $result->num_rows > 0) {
-        header("Location: ../public/views/team_dashboard/addteammember?error=Username already exists");
+        header("location:".$base_url."public/views/team_dashboard/addteammember.php?error=Username already exists");
     }
     else{
         $sql= "SELECT * FROM user_team";
@@ -196,7 +203,7 @@ function addTeamMember($secret_key,$conn, $formData) {
         $sql = "INSERT INTO user_team (full_name, password, email, contact, address, dob, idpic, user_type,user_id) 
                 VALUES ('$username', '$hashed_password', '$email', '$cnumber', '$address', '$dob', '$idpic', '$usertype','$user_id')";
         if (mysqli_query($conn, $sql)) {
-            header("Location: ../public/views/team_dashboard/teamlist?success=New team member added successfully");
+            header("location:".$base_url."public/views/team_dashboard/teamlist.php?success=New team member added successfully");
             exit();
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -205,6 +212,7 @@ function addTeamMember($secret_key,$conn, $formData) {
 }
 
 function  loginUserTeam($secret_key,$conn, $formData) {
+    global $base_url;
     echo 'i am in login user method';
     $username =$formData['username'];
     $password = $formData['password'];
@@ -212,7 +220,7 @@ function  loginUserTeam($secret_key,$conn, $formData) {
     $result = mysqli_query($conn, $sql);
     
     if ($result && $result->num_rows == 0) {
-        header("Location: ../public/views/login_user?error=Invalid Username or Password");
+        header("location:".$base_url."public/views/login_user.php?error=Invalid Username or Password");
     }
     else{
         $newpass=$secret_key.$password;
@@ -224,10 +232,11 @@ function  loginUserTeam($secret_key,$conn, $formData) {
             $_SESSION['team_username'] = $user['full_name'];
             $_SESSION['usertype'] = $user['user_type'];
             $_SESSION['team_email'] = $user['email'];
-            header("Location: ../public/views/team_dashboard/team_dashboard");
+            header("location:".$base_url."public/views/team_dashboard/team_dashboard.php");
             exit();
         } else {
-            header("Location: ../public/views/login_user?error=InvalidPassword");
+            echo $base_url;
+            /*header("location:".$base_url."public/views/login_user.php?error=InvalidPassword"); */
         }
     } 
 }
@@ -256,9 +265,6 @@ function getuserDataByID( $conn, $user_id ) {
     else{
         return null;
     }
-   
-
-
 }
 
 function getclientData($conn, $user_id){

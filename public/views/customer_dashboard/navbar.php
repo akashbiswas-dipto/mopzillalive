@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <?php session_start();
+if ($_SERVER['HTTP_HOST'] == 'localhost') {
+        $base_url = "http://localhost/";
+    } else {
+        $base_url = "https://mop-zilla.com/";
+    }
 include_once("../../../controller/authController.php");
 $userData=getuserData($conn);
 if(isset($_SESSION['usertype']) && ($_SESSION['usertype'] == 1 || $_SESSION['usertype'] == 2)){

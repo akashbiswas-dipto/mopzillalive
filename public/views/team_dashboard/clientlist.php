@@ -17,7 +17,7 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] === '1') {
 <head>
     <meta charset="UTF-8">
     <title>Client List - Mopzilla</title>
-    <link rel="stylesheet" type="text/css" href="/mopzilla/public/css/client.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>public/css/client.css">
     <style>
         
     </style>
@@ -120,7 +120,7 @@ document.addEventListener('click', function(event) {
 </html>
 <?php
 } else {
-    header("Location: /mopzilla/public/views/team_dashboard/team_dashboard");
+    header("Location:".$base_url."public/views/team_dashboard/team_dashboar.php");
     exit();
 }
 ?>

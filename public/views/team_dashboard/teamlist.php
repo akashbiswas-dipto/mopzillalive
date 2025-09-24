@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/mopzilla/public/css/teamlist.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>public/css/teamlist.css">
     <title>Team List- Mopzilla</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
                     foreach($userData as $user):?>
                     <div  class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="../../<?php echo $user['idpic'];?>" alt="Card image cap">
+                            <img class="card-img-top" src="<?php echo $base_url;?>public/<?php echo $user['idpic'];?>" alt="Card image cap">
                             <ul class="list-group list-group-flush">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $user['full_name']; ?></h5>
@@ -54,5 +54,5 @@
 <?php }
     
 else{
-    header("Location: /mopzilla/public/views/team_dashboard/team_dashboard");
+    header("Location: <?php echo $base_url;?>public/views/team_dashboard/team_dashboard.php");
 } ?>

@@ -5,12 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/mopzilla/public/css/register.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $base_url; ?>public/css/register.css">
     <title>Join the Mopzilla Family</title>
 </head>
 <body>
     <div class="register_box">
-        <form action="../../controller/authController.php" method="POST">
+        <form action="<?php echo $base_url; ?>controller/authController.php" method="POST">
             <h1>Join the Mopzilla Family</h1>
             <input type="text" name="full_name" placeholder="Full Name" required><br>
             <input type="text" name="address" placeholder="Full Address" required><br>

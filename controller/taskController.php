@@ -20,6 +20,7 @@ if(isset($_POST["add_task"])){
 
 if(isset($_POST['update_task'])){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+        global $base_url;
         $task_id = $_POST['task_id'];
         $status = $_POST['status'];
         $team_member1 = $_POST['team_member1'];
@@ -27,10 +28,10 @@ if(isset($_POST['update_task'])){
         $date=$_POST['work_date'];
         $sql = "UPDATE tasklist SET work_date='$date', status='$status', team_member1='$team_member1', team_member2='$team_member2' WHERE sl='$task_id'";
         if (mysqli_query($conn, $sql)) {
-            header("Location: ../public/views/team_dashboard/tasklist?success=Task updated successfully");
+            header("location:".$baseurl."public/views/team_dashboard/tasklist?success=Task updated successfully");
             exit();
         } else {
-            header("Location: ../public/views/team_dashboard/tasklist?error=Error updating task: ");
+            header("location:".$baseurl."public/views/team_dashboard/tasklist?error=Error updating task: ");
             exit();
         }
     }
@@ -38,6 +39,7 @@ if(isset($_POST['update_task'])){
 
 if (isset($_POST['update_task_all'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        global $base_url;
         $client_id = $_POST['client_id'];
         $status = $_POST['status'];
         $team_member1 = $_POST['team_member1'];
@@ -70,10 +72,10 @@ if (isset($_POST['update_task_all'])) {
         }
 
         if ($success) {
-            header("Location: ../public/views/team_dashboard/tasklist?success=Tasks updated successfully");
+            header("location:".$baseurl."public/views/team_dashboard/tasklist?success=Tasks updated successfully");
             exit();
         } else {
-            header("Location: ../public/views/team_dashboard/addtask?error=Error updating tasks");
+            header("location:".$baseurl."public/views/team_dashboard/addtask?error=Error updating tasks");
             exit();
         }
     }
@@ -82,13 +84,14 @@ if (isset($_POST['update_task_all'])) {
 
 if(isset($_POST["delete_task"])){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+        global $base_url;
         $task_id = $_POST['delete_task'];
         $sql = "DELETE FROM tasklist WHERE sl='$task_id'";
         if (mysqli_query($conn, $sql)) {
-            header("Location: ../public/views/team_dashboard/tasklist?success=Task deleted successfully");
+            header("location:".$baseurl."public/views/team_dashboard/tasklist?success=Task deleted successfully");
             exit();
         } else {
-            header("Location: ../public/views/team_dashboard/tasklist?error=Error deleting task: ");
+            header("location:".$baseurl."public/views/team_dashboard/tasklist?error=Error deleting task: ");
             exit();
         }
     }
@@ -96,19 +99,21 @@ if(isset($_POST["delete_task"])){
 
 if(isset($_POST["delete_task_all"])){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+        global $base_url;
         $client_id = $_POST['client_id'];
         $sql = "DELETE FROM tasklist WHERE client_id='$client_id'";
         if (mysqli_query($conn, $sql)) {
-            header("Location: ../public/views/team_dashboard/tasklist?success=Tasks deleted successfully");
+            header("location:".$baseurl."public/views/team_dashboard/tasklist?success=Tasks deleted successfully");
             exit();
         } else {
-            header("Location: ../public/views/team_dashboard/tasklist?error=Error deleting task: ");
+            header("location:".$baseurl."public/views/team_dashboard/tasklist?error=Error deleting task: ");
             exit();
         }
     }
 }
 
 function addTask($secret_key, $conn, $formData) {
+    global $base_url;
     $customername = $formData['customername'];
     $customercontact = $formData['customercontact'];
     $worktype = $formData['worktype']; // 1 = weekly, 2 = fortnightly
@@ -143,7 +148,7 @@ function addTask($secret_key, $conn, $formData) {
                 VALUES ('" . $customername . "','" . $customercontact . "', '" . $formData['customeraddress'] . "','$user_id','1','1')";
 
         if (!mysqli_query($conn, $sql)) {
-            header("Location: ../public/views/team_dashboard/addtask?error=Client creation failed.");
+            header("location:".$baseurl."public/views/team_dashboard/addtask?error=Client creation failed.");
             exit();
         }
     }
@@ -173,10 +178,10 @@ function addTask($secret_key, $conn, $formData) {
         $currentDate->add($interval);
     }
     if ($success) {
-        header("Location: ../public/views/team_dashboard/tasklist?success=Tasks added successfully");
+        header("location:".$baseurl."public/views/team_dashboard/tasklist?success=Tasks added successfully");
         exit();
     } else {
-        header("Location: ../public/views/team_dashboard/addtask?error=Error adding tasks");
+        header("location:".$baseurl."public/views/team_dashboard/addtask?error=Error adding tasks");
         exit();
     }
 }
@@ -185,6 +190,7 @@ function addTask($secret_key, $conn, $formData) {
 
 
 function getTaskData($conn, $usertype){
+    
     if($usertype == 1){
         $sql="select * from tasklist Order By work_date ASC";
         $result=mysqli_query($conn,$sql);

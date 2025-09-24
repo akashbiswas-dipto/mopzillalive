@@ -3,7 +3,7 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url('/mopzilla/public/content/aboutus1.jpg');
+    background-image: url('../content/aboutus1.jpg');
     background-size:contain;
     background-position:bottom;
     background-repeat: repeat-x;
@@ -45,7 +45,7 @@ body{
     margin: 40px 25%;
     height: 700px;
     padding-top: 0;
-    background-image: url('/mopzilla/public/content/whychoseusbg.jpg');
+    background-image: url('../content/whychoseusbg.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -1,19 +1,33 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "mopzilla";
+session_start();
+
+if ($_SERVER['HTTP_HOST'] == 'localhost') {
+    // Localhost settings
+    $base_url  = "http://localhost/mopzilla/";
+    define("BASE_PATH", $_SERVER['DOCUMENT_ROOT']."/mopzilla/");
+
+    $db_host = "localhost";         // usually localhost
+    $db_user = "root";              // your local DB user
+    $db_pass = "";                  // your local DB password (often empty in XAMPP)
+    $db_name = "mopzilla";    // your local database name
+} else {
+    // Live server settings
+    $base_url  = "https://mop-zilla.com/";
+    define("BASE_PATH", $_SERVER['DOCUMENT_ROOT']."/");
+
+    $db_host = "localhost";          // usually localhost for cPanel MySQL
+    $db_user = "mopzilla_adminakash"; // your live DB username
+    $db_pass = "Mopzilla@Admin"; // your live DB password
+    $db_name = "mopzilla_live";       // your live database name
+}
 $secret_key='m0pz!lla_s3cr3t_k3y_2025';
 $secret_key_customer='m0pz!lla_s3cr3t_k3y_C0sT0m5r_2025';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// ✅ Connect to database
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
 // Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-  
+    die("❌ Database connection failed: " . $conn->connect_error);
 }
-
-
-
 ?>

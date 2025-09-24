@@ -18,14 +18,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/mopzilla/public/css/team_dashboard.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>public/css/team_dashboard.css">
     <title>Hello - <?php echo $_SESSION['team_username'];?></title>
 </head>
 <body>
     <div class="box">
         <div class="row">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/mopzilla/public/content/briefcase.png" alt="Card image cap">
+                <img class="card-img-top" src="<?php echo $base_url;?>public/content/briefcase.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $currentWeekTaskCount; ?></h5>
                     <p class="card-text">Tasks - This Week</p>
@@ -38,28 +38,28 @@
             if(isset($_SESSION['usertype']) && $_SESSION['usertype'] == 1 ){
                 ?>
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/mopzilla/public/content/client.png" alt="Card image cap">
+                <img class="card-img-top" src="<?php echo $base_url;?>public/content/client.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo count($clientallData); ?></h5>
                     <p class="card-text">Clients</p>
                 </div>
                 <div class="card-body">
-                    <a href="clientlist" class="card-link">View Client List</a>
+                    <a href="clientlist.php" class="card-link">View Client List</a>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/mopzilla/public/content/group.png" alt="Card image cap">
+                <img class="card-img-top" src="<?php echo $base_url;?>public/content/group.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo count($userData);?></h5>
                     <p class="card-text">Team Members</p>
                 </div>
                 <div class="card-body">
-                    <a href="teamlist" class="card-link">View Team Members</a>
+                    <a href="teamlist.php" class="card-link">View Team Members</a>
                 </div>
             </div>
             
              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/mopzilla/public/content/birthday.png" alt="Card image cap">
+                <img class="card-img-top" src="<?php echo $base_url;?>public/content/birthday.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo count($userData);?></h5>
                     <p class="card-text">Birthdays</p>

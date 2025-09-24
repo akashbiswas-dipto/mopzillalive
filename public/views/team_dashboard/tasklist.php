@@ -22,7 +22,7 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/mopzilla/public/css/tasklist.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>public/css/tasklist.css">
     <title>Task list - Mopzilla</title>
     <style>
         
@@ -33,7 +33,7 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
 <div class="box">
     <?php if($_SESSION['usertype'] === '1') { ?>
     <div class="button_add">
-        <a href="addtask" class="addmemberbutton">Add Task</a> 
+        <a href="addtask.php" class="addmemberbutton">Add Task</a> 
     </div>
     <div class="filter_button">
         <form method="POST" action="">
@@ -127,7 +127,7 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
                                 $total = ($task['workinghour'] * $task['hourly_rate']) + $task['agency_fee'];
                                 $date = new DateTime($task['work_date']);
                             ?>
-                            <form action="../../../controller/taskController.php" method="POST">
+                            <form action="<?php echo $base_url;?>controller/taskController.php" method="POST">
                             <tr>
                                 <td><?php echo $clientData['name']; ?></td>
                                 <td><?php echo $clientData['address']; ?></td>
@@ -215,7 +215,7 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
 </html>
 <?php
 } else {
-    header("Location: /mopzilla/public/views/team_dashboard/team_dashboard");
+    header("Location:".$base_url."public/views/team_dashboard/team_dashboard.php");
     exit();
 }
 ?>

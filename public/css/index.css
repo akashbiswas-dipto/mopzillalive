@@ -2,7 +2,7 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url('/mopzilla/public/content/background_home1.jpg');
+    background-image: url('../content/background_home1.jpg');
     background-position: top;
     background-repeat: no-repeat;
     background-size:cover;
@@ -72,7 +72,7 @@ body{
     height: 400px;
     margin: auto;
     text-align: center;
-    background-image: url('/mopzilla/public/content/whychoseusbg.jpg');
+    background-image: url('../content/whychoseusbg.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -7,12 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/mopzilla/public/css/teamlist.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>public/css/teamlist.css">
     <title>Add Task- Mopzilla</title>
 </head>
 <body>
     <div class="box">
-            <form action="../../../controller/taskController.php" method="POST">
+            <form action="<?php echo $base_url;?>controller/taskController.php" method="POST">
                 <h1>Add Task</h1>
                 <input type="text" name="customername" placeholder="Customer Name" required><br>
                 <input type="text" name="customercontact" placeholder="Customer Contact Number" required><br>
@@ -37,5 +37,5 @@
 </html>
 <?php }
 else{
-    header("Location: /mopzilla/public/views/team_dashboard");
+    header("Location:".$base_url."public/views/team_dashboard.php");
 } ?>
