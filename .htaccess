@@ -1,0 +1,22 @@
+# Enable Rewrite
+RewriteEngine On
+RewriteBase /
+
+# ----------------------------------
+# Do not rewrite existing files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# ----------------------------------
+# Rewrite any request ending with no extension to .php
+# This works for files in subfolders
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+# ----------------------------------
+# Optional: redirect /index to root
+RewriteRule ^index/?$ index.php [L,R=301]
+
+# ----------------------------------
+# Custom 404 page
+ErrorDocument 404 /public/views/404.php

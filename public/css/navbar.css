@@ -1,0 +1,65 @@
+@import url('font.css');
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto Condensed", sans-serif;
+        position: sticky;
+    top: 0;
+}
+.navbar{
+    width: 100%;
+    height: auto;
+
+}
+
+.container{
+    margin: 0 200px !important;
+}
+.icon{
+    width: 30%;
+    text-align: left;
+    float: left;
+}
+
+.navbar-brand{
+    text-align: left;
+}
+.nav-link{
+    color: black !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 22px;
+    border-radius: 35px;
+    padding: 0 35px !important;
+}
+
+.nav-link:hover {
+    color: white !important;
+    background-color: #234f1E !important;
+    transition: color 0.4s ease, transform 0.3s ease
+}
+
+.nav-link-menu{
+    color: #234f1E !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 22px;
+    border-radius: 35px;
+    padding: 5px 35px !important; 
+    background-color: white !important;
+} 
+
+.nav-link-menu:hover {
+    color: white !important;
+    background-color: #234f1E !important;
+    transition: color 0.4s ease, transform 0.3s ease
+}
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    background: no-repeat center center;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='black' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}

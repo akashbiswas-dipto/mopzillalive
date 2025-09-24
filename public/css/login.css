@@ -1,0 +1,115 @@
+body{
+    background-image: url('../content/whychoseusbg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+
+}
+.login{
+    background-color: white;
+    width: 700px;
+    border-radius: 20px;
+    height: 500px;
+    margin: 100px auto;
+    text-align: center;
+}
+.login_logo{
+    width: 100px;
+    height: auto;
+    margin-top: 10px;
+}
+
+.login h1{
+    font-size: 40px;
+    margin: 20px 60px;
+}
+
+.login input{
+    width: 400px;
+    height: 40px;
+    margin: 10px 0 10px 0;
+    border-radius: 15px;
+    border: 2px solid #234f1E;
+    text-align: center;
+}
+
+.login button{
+    width: 200px;
+    height: 40px;
+    margin-top: 30px;
+    background-color:white ;
+    color: #234f1E;
+    border: 2px solid #234f1E;
+    border-radius: 15px;
+}
+
+.login button:hover{
+    background-color: #234f1E;
+    color: white;
+    transition-duration: .2s;
+}
+
+.register{
+    margin-top: 20px !important;
+}
+
+@media (max-width: 767px){
+
+    body{
+        height: 100vh;
+    }
+    .login{
+        width: 80% !important;
+        margin: 33% auto;
+        height: auto;
+    }
+
+    .login h1{
+        margin: 20px auto;
+        font-size: 25px;
+    }
+
+    .login input{
+        width: 90%;
+    }
+
+    .login button{
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        height: auto;
+        background-position: top center;
+        height: 100vh;
+    }
+
+    .login {
+        width: 90% !important;
+        margin: 50px auto;
+        height: auto;
+        padding: 30px 15px;
+    }
+
+    .login h1 {
+        font-size: 25px;
+        margin: 10px auto;
+    }
+
+    .login input {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .login button {
+        width: 80%;
+        margin: 20px auto;
+        font-size: 16px;
+        height: 45px;
+    }
+}

@@ -1,0 +1,15 @@
+[25-Sep-2025 00:10:35 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 00:11:45 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 00:11:53 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 00:11:56 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 00:12:06 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 00:18:07 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 00:18:10 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 00:19:08 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 01:05:13 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 01:05:15 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 01:14:25 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 01:17:16 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 01:17:25 Australia/Sydney] PHP Warning:  Constant BASE_PATH already defined in /home/mopzilla/public_html/controller/database.php on line 16
+[25-Sep-2025 02:13:23 Australia/Sydney] PHP Warning:  Undefined array key "usertype" in /home/mopzilla/public_html/public/views/team_dashboard/team_dashboard.php on line 6
+[25-Sep-2025 02:13:23 Australia/Sydney] PHP Warning:  Undefined array key "team_username" in /home/mopzilla/public_html/public/views/team_dashboard/team_dashboard.php on line 25

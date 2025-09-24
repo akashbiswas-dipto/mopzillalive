@@ -1,0 +1,16 @@
+runtime: php82
+entrypoint: serve index.php
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 5
+
+handlers:
+  - url: /css
+    static_dir: Public/css
+  - url: /js
+    static_dir: Public/js
+  - url: /content
+    static_dir: Public/content
+  - url: /.*
+    script: index.php

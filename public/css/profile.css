@@ -1,0 +1,16 @@
+.box{
+    width: 50%;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.card-img-top{
+    width: 150px !important;
+    height: 150px !important;
+    border-radius: 50% !important;
+}
+
+.details{
+    width: 100%;
+    margin-top: 60px;
+}

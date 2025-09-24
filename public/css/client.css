@@ -1,0 +1,150 @@
+.box{
+    width: 70%;
+    margin: auto;
+}
+
+.table{
+    width: 100%; border-collapse: collapse;
+}
+.task-status-btn {
+            padding: 5px 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 0 !important ;
+}
+
+.inactive-task {
+            padding: 5px 10px;
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+}
+
+.task-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 999;
+            min-width: 250px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 5px;
+}
+
+.task-dropdown ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+}
+
+.task-dropdown ul li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+}
+
+.relative-wrapper {
+            position: relative;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .box {
+        width: 95%;
+        padding: 10px;
+        margin: auto;
+    }
+
+    .list_team .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        width: 100% !important;
+        border-collapse: collapse;
+        font-size: 12px;
+    }
+
+    table thead {
+        display: none; /* hide headers for mobile, optional */
+    }
+
+    table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: #fff;
+    }
+
+    table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 10px;
+        border: none;
+        position: relative;
+    }
+
+    table tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        flex: 1;
+    }
+
+    .task-status-btn {
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 8px;
+        background-color: #234f1E;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    .task-dropdown {
+        position: relative;
+        display: none;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+
+    .task-dropdown ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .task-dropdown li {
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    .inactive-task {
+        font-size: 12px;
+        color: #888;
+    }
+
+    /* Reduce padding and font size in general */
+    .list_team {
+        padding: 5px;
+    }
+
+    /* Adjust dropdown for smaller screens */
+    .relative-wrapper {
+        width: 100%;
+    }
+}

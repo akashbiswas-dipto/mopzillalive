@@ -1,0 +1,231 @@
+.box{
+    width: 95%;
+    margin: auto;
+}
+
+.button_add{
+    width: 100%;
+    height: 50px;
+    margin-top: 40px;
+    text-align: left;
+}
+
+.filter_select{
+    width: 300px;
+    height: auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.filter_select option:hover{
+    background-color: #234f1E !important;
+    color: white !important;
+}
+.filter_button{
+    margin-bottom: 10px;
+}
+
+.filter_button button{
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    border: 1px solid #234f1E;
+    border-radius: 10px;
+}
+
+.filter_button button:hover{
+    background-color: #234f1E;
+    color: white;
+    transition-duration: .2s;
+}
+
+.addmemberbutton{
+    text-decoration: none;
+    width: 200px;
+    height: 40px;
+    margin-top: 30px;
+    padding: 5px 15px;
+    background-color:white ;
+    color: #234f1E;
+    border: 2px solid #234f1E;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+
+.addmemberbutton:hover{
+    background-color: #234f1E;
+    color: white;
+    transition-duration: .2s;
+}
+
+.all-tables-container {
+            max-height: 70vh; /* adjust as needed */
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px; /* spacing between weeks */
+        }
+        th, td {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+        }
+
+        td select{
+            width: auto;
+            height: auto;
+            padding: 5px 10px !important;
+            border-radius: 10px;
+        }
+        thead {
+            background-color: #f2f2f2;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        h4 {
+            margin: 10px 0 5px;
+        }
+
+.task-buttons {
+    display: inline-block;
+    background-color: white;
+    color: #234f1E;
+    border: 1px solid #234f1E;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.task-buttons:hover {
+    background-color: #234f1E;
+    color: white;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+    width: fit-content;
+    background-color: #234f1E;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* Dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Dropdown items */
+.dropdown-content button {
+    width: 100%;
+    padding: 8px 12px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.dropdown-content button:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change button color when hovered */
+.dropdown:hover .dropbtn {
+    background-color: #1d3f16;
+}
+
+
+@media (max-width: 767px) {
+    .box {
+        padding: 10px;
+    }
+
+    .button_add a{
+        padding: 5px 10px;
+    }
+    /* Filter section */
+    .filter_button label,
+    .filter_button select,
+    .filter_button button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* Table container scroll */
+    .list_team table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    }
+
+    .list_team table th,
+    .list_team table td {
+        padding: 8px 5px;
+        font-size: 0.85rem;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    /* Dropdown buttons and actions */
+    .dropdown .dropbtn {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+
+    .dropdown .dropdown-content button {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    /* Inputs inside table */
+    .list_team input,
+    .list_team select {
+        width: 100%;
+        font-size: 0.85rem;
+        padding: 4px;
+    }
+
+    /* Headings */
+    .all-tables-container h4 {
+        font-size: 1rem;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    /* Action buttons */
+    .addmemberbutton {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        padding: 8px 0;
+    }
+}
