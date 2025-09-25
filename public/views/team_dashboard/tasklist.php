@@ -24,10 +24,6 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>public/css/tasklist.css">
     <title>Task list - Mopzilla</title>
-    <style>
-        
-        
-    </style>
 </head>
 <body>
 <div class="box">
@@ -86,7 +82,7 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
                             if($_SESSION['usertype'] === '1'){
                             $weeklyTotal += ($task['workinghour'] * $task['hourly_rate']) + $task['agency_fee'];}
                             elseif($_SESSION['usertype'] === '2'){
-                                $weeklyTotal += ($task['workinghour'] * 22.5);
+                                $weeklyTotal += (($task['workinghour']/2) * 22.5);
                             }
                             
                         }

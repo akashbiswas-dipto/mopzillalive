@@ -59,7 +59,7 @@ $clientallData=getallclientData($conn);
                     </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Earning Statement</a>
+                        <a class="nav-link" href="es.php">Earning Statement</a>
                     </li>
                 </ul>
             </div>

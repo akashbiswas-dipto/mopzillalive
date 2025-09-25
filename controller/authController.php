@@ -14,6 +14,40 @@ if (isset($_POST['team_login'])){
 
 }
 
+if(isset($_POST['delete_userteam_profile'])){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        global $base_url;
+        $team_id = $_POST['team_id'];
+        $sql = "DELETE FROM user_team WHERE user_id='$team_id'";
+        if (mysqli_query($conn, $sql)) {
+            header("location:".$base_url."public/views/team_dashboard/teamlist.php?success=Team member deleted successfully");
+            exit();
+        } else {
+            header("location:".$base_url."public/views/team_dashboard/teamlist.php?error=Error deleting team member: ");
+            exit();
+        }
+    }
+}
+
+if(isset($_POST['customer_delete']) && $_SERVER["REQUEST_METHOD"] == "POST"){
+    global $base_url;
+    $client_id = $_POST['customer_id'];
+    $sql = "DELETE FROM client WHERE customer_id='$client_id'";
+    if (mysqli_query($conn, $sql)) {    
+        $sql= "DELETE FROM tasklist WHERE client_id='$client_id'";
+        if(mysqli_query($conn, $sql)){
+            header("location:".$base_url."public/views/team_dashboard/clientlist.php?success=Client profile deleted successfully");
+            exit();
+        } else {
+            header("location:".$base_url."public/views/team_dashboard/clientlist.php?error=Error deleting client profile: ");
+            exit();
+        }
+    } else {
+         header("location:".$base_url."public/views/team_dashboard/clientlist.php?error=Error deleting client profile: ");
+            exit();
+    }
+}
+
 if(isset($_POST['customer_login'])){
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $formData=[

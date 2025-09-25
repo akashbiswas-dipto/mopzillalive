@@ -1,0 +1,22 @@
+@import url('font.css');
+body{
+    font-family: "Roboto Condensed", sans-serif;
+}
+.box{
+    width: 95%;
+    margin: auto;
+}
+ .filter {
+            text-align: center;
+            margin: 20px;
+        }
+
+.chart {
+    max-width: 90%;   /* limit width */
+    margin: 0 auto;     /* center the chart */
+}
+
+.chart canvas {
+    width: 100% !important;  /* responsive */
+    height: auto !important; /* control height */
+}

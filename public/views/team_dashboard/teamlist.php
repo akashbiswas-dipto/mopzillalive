@@ -22,26 +22,33 @@
                     <?php if($userData && count($userData) > 0):
                     foreach($userData as $user):?>
                     <div  class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="<?php echo $base_url;?>public/<?php echo $user['idpic'];?>" alt="Card image cap">
-                            <ul class="list-group list-group-flush">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $user['full_name']; ?></h5>
-                                    <p class="card-text"><?php echo $user['user_id']; ?></p>
-                                    <p class="card-text" style="font-weight: 600 !important;"><?php if($user['user_type']=='1'){
-                                        echo "Admin";}
-                                    else{
-                                    echo "Team Member";} ?></p>
-                                </div>
-                                <li class="list-group-item">Date of Birth: <?php echo $user['dob']; ?></li>
-                                <li class="list-group-item">Address: <?php echo $user['address']; ?></li>
-                                <li class="list-group-item">Contact: <?php echo $user['contact']; ?></li>
-                                <li class="list-group-item">Joining Date: <?php echo $user['signup_date']; ?></li>
-                                <div class="card-body">
-                                <a href="#" class="card-link">View Profile</a>                            
-                            </ul>
-                        </div>
+                        <form action="<?php echo $base_url;?>controller/authController.php" method="post">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="<?php echo $base_url;?>public/<?php echo $user['idpic'];?>" alt="Card image cap">
+                                <ul class="list-group list-group-flush">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $user['full_name']; ?></h5>
+                                        <p class="card-text"><?php echo $user['user_id']; ?></p>
+                                        <p class="card-text" style="font-weight: 600 !important;"><?php if($user['user_type']=='1'){
+                                            echo "Admin";}
+                                        else{
+                                        echo "Team Member";} ?></p>
+                                    </div>
+                                    <li class="list-group-item">Date of Birth: <?php echo $user['dob']; ?></li>
+                                    <li class="list-group-item">Address: <?php echo $user['address']; ?></li>
+                                    <li class="list-group-item">Contact: <?php echo $user['contact']; ?></li>
+                                    <li class="list-group-item">Joining Date: <?php echo $user['signup_date']; ?></li>
+                                    <div class="card-body">
+                                    <input type="hidden" name="team_id" value="<?php echo $user['user_id']; ?>">
+                                    <a href="#" class="card-link">View Profile</a>
+                                    <?php if($user['user_type'] != '1'){ ?>
+                                    <button type="submit" name="delete_userteam_profile" class="card-link" onclick="return confirm('Are you sure you want to delete the team member');">Delete Profile</button>
+                                    <?php } ?>                              
+                                </ul>
+                            </div>
+                        </form>
                     </div>
+
                     <?php endforeach; ?>
                     <?php else: ?>
                         <p>No user data available.</p>

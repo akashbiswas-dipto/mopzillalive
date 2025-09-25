@@ -40,6 +40,7 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] === '1') {
                         <th>Promo Available</th>
                         <th>Profile Created</th>
                         <th>Task Status</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -80,6 +81,15 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] === '1') {
                                 <?php else: ?>
                                     <span class="inactive-task">No Active Task</span>
                                 <?php endif; ?>
+                            </td>
+                            <td>
+                                <form action="<?php echo $base_url; ?>controller/authController.php" method="post" style="display:inline;">
+                                    <input type="hidden" name="customer_id" value="<?php echo htmlspecialchars($user['customer_id']); ?>">
+                                    <button type="submit" name='customer_delete' class="task-status-btn" onclick="return confirm('Are you sure you want to delete this profile?');">
+                                        Delete Profile
+                                    </button>
+                                </form>
+
                             </td>
                         </tr>
                     <?php endforeach; ?>
