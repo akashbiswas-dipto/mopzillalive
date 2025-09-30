@@ -42,16 +42,15 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
             if ($invoiceData && count($invoiceData) > 0) {
                 $sl = 1;
                 foreach ($invoiceData as $invoice) {
-                    $teamid = $invoice['team_id'];
-                    // get team name
+                    $teamid = $_SESSION['team_id'];
                     $sql = "SELECT full_name FROM user_team WHERE user_id='$teamid' LIMIT 1";
                     $result = mysqli_query($conn, $sql);
-                    $teamname = "";
+                    $teamname = ""; 
                     if ($result && mysqli_num_rows($result) > 0) {
                         $row = mysqli_fetch_assoc($result);
                         $teamname = $row['full_name'];
                     }
-
+                    if($invoice['team_id']==$_SESSION['team_id']){
                     echo "<tr>";
                     echo "<td>{$sl}</td>";
 
@@ -107,6 +106,7 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
 
                     echo "</tr>";
                     $sl++;
+                }
                 }
             } else {
                 echo "<tr><td colspan='6'>No invoice data available.</td></tr>";

@@ -59,7 +59,10 @@ $clientallData=getallclientData($conn);
                     </li>
                     <?php 
                     }
-                            ?>
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $base_url;?>public/views/team_dashboard/availability.php">Availabality</a>
+                    </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo $base_url;?>public/views/team_dashboard/invoice.php">Invoice</a>
                         </li>

@@ -184,3 +184,93 @@ table {
         max-width: 300px;
     }
 }
+
+/* 💻 Laptop view */
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .invoicelist {
+        width: 80%;   /* narrower than mobile, more centered */
+        margin: 20px auto;
+    }
+
+    .invoicelist h5 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    table th, table td {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    thead th {
+        background: #f2f2f2;
+        font-size: 15px;
+    }
+
+    /* Action buttons */
+    .status-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    .status-actions button {
+        width: auto;
+        min-width: 110px;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    /* TxID input field */
+    .txid-input input {
+        width: 180px;
+        font-size: 14px;
+        padding: 6px 8px;
+    }
+    .txid-input button {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    /* Add Invoice button */
+    .addinvoicebtn {
+        width: 140px;
+        font-size: 14px;
+        padding: 8px 12px;
+        margin-top: 15px;
+    }
+
+    /* Popup form */
+    .form-container {
+        width: 420px;
+        padding: 20px;
+        font-size: 14px;
+    }
+    .form-container h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    .form-container label {
+        font-size: 14px;
+    }
+    .form-container input {
+        font-size: 14px;
+        padding: 8px;
+    }
+    .form-container button {
+        font-size: 14px;
+        padding: 8px 12px;
+        margin-top: 8px;
+    }
+
+    .total-display {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
