@@ -54,7 +54,7 @@ if(isset($_POST['customer_login'])){
         'email'=>$_POST['username'],
         'password'=>$_POST['password']
     ];
-    loginCustomer( $secret_key, $conn, $formData );
+    loginCustomer( $secret_key_customer, $conn, $formData );
     }
 }
 
@@ -149,7 +149,7 @@ if(isset($_POST['add_team_member']) && $_SERVER["REQUEST_METHOD"] == "POST"){
     
 }
 
-function CreateCustomer( $secret_key_customer, $conn,$formData ) {
+function CreateCustomer($secret_key_customer, $conn,$formData ) {
     global $base_url;
     $newpass=$secret_key_customer.$formData['password'];
     $hash_password = md5($newpass);
@@ -168,9 +168,10 @@ function CreateCustomer( $secret_key_customer, $conn,$formData ) {
     $sql = "INSERT INTO client (name, email, password, contact, address,customer_id,customer_type,promo_available) 
             VALUES ('".$formData['name']."', '".$formData['email']."', '$hash_password', '".$formData['contact']."', '".$formData['address']."','$user_id','1','1')";    
     if (mysqli_query($conn, $sql)) {
-        header("location:".$base_url."public/views/login.php?success=Registration successful. Please log in.");
+        header("location:".$base_url."public/views/customer_dashboard/customer_dashboard.php?success=Registration successful. Please log in.");
         exit();
     } else {
+        header("location:".$base_url."public/views/login.php?error=Registration failed. Please try again.");
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
@@ -178,8 +179,8 @@ function CreateCustomer( $secret_key_customer, $conn,$formData ) {
 function loginCustomer($secret_key, $conn, $formData){
     global $base_url;
     $email=$formData["email"];
-    $password=$formData["password"];
-    $hash_password = md5("Tanmay@123");
+    $password=$secret_key.$formData["password"];
+    $hash_password = md5($password);
     $sql = "SELECT * FROM client WHERE email='$email' Limit 1";
     $result = mysqli_query($conn, $sql);
     if($result && $result->num_rows == 0){
@@ -187,15 +188,16 @@ function loginCustomer($secret_key, $conn, $formData){
     }
     else{
         $user=$result->fetch_assoc();
-        print_r($user);
         if($hash_password== $user['password']){
             session_start();
+            $_SESSION['usertype']='3';
             $_SESSION['customer_id'] = $user['customer_id'];
             $_SESSION['customer_name'] = $user['name'];
             $_SESSION['customer_email'] = $user['email'];
             header("location:".$base_url."public/views/customer_dashboard/customer_dashboard.php");
             exit();
         } else {
+
             header("location:".$base_url."public/views/login.php?error=Invalid Password");
         }
     }

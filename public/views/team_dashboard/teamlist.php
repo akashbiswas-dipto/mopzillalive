@@ -1,7 +1,6 @@
 <?php
     include_once("navbar.php");
     if(isset($_SESSION['usertype']) && $_SESSION['usertype'] === '1'){
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

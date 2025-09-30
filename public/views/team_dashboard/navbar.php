@@ -50,14 +50,19 @@ $clientallData=getallclientData($conn);
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $base_url;?>public/views/team_dashboard/tasklist.php">Task List</a>
                     </li>
-                    <?php if(isset($_SESSION['usertype']) && $_SESSION['usertype'] == 1): ?>
+                    <?php if(isset($_SESSION['usertype']) && $_SESSION['usertype'] == 1){ ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $base_url;?>public/views/team_dashboard/clientlist.php">Client List</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $base_url;?>public/views/team_dashboard/teamlist.php">Team List</a>
                     </li>
-                    <?php endif; ?>
+                    <?php 
+                    }
+                            ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo $base_url;?>public/views/team_dashboard/invoice.php">Invoice</a>
+                        </li>
                     <li class="nav-item">
                         <a class="nav-link" href="es.php">Earning Statement</a>
                     </li>

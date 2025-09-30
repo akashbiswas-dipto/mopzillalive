@@ -26,8 +26,8 @@ if(isset($_POST['update_task'])){
         $team_member1 = $_POST['team_member1'];
         $team_member2 = $_POST['team_member2'];
         $date=$_POST['work_date'];
-
-        $sql = "UPDATE tasklist SET work_date='$date', status='$status', team_member1='$team_member1', team_member2='$team_member2' WHERE sl='$task_id'";
+        $notes= $_POST['notes'];
+        $sql = "UPDATE tasklist SET work_date='$date', status='$status', notes='$notes', team_member1='$team_member1', team_member2='$team_member2' WHERE sl='$task_id'";
         if (mysqli_query($conn, $sql)) {
             header("location:".$base_url."public/views/team_dashboard/tasklist.php?success=Task updated successfully");
             exit();
@@ -42,35 +42,52 @@ if(isset($_POST['update_task'])){
 if (isset($_POST['update_task_all'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         global $base_url;
-        $client_id = $_POST['client_id'];
-        $status = $_POST['status'];
+        $client_id   = $_POST['client_id'];
+        $status      = $_POST['status'];
         $team_member1 = $_POST['team_member1'];
         $team_member2 = $_POST['team_member2'];
-        $date = $_POST['work_date'];
-        $worktype = $_POST['work_type']; // make sure you're posting this too
-
-        $startDate = new DateTime($date);
+        $date        = $_POST['work_date'];
+        $worktype    = $_POST['work_type']; // 1 = weekly, 2 = fortnightly
+        $notes= $_POST['notes'];
+        $startDate   = new DateTime($date);
         $intervalSpec = ($worktype == '1') ? 'P1W' : 'P2W';  // Weekly or Fortnightly
-        $interval = new DateInterval($intervalSpec);
-        $endDate = clone $startDate;
+        $interval    = new DateInterval($intervalSpec);
+        $endDate     = clone $startDate;
         $endDate->modify('+3 months');
 
         $success = true;
         $currentDate = clone $startDate;
 
-        while ($currentDate <= $endDate) {
-            $work_date = $currentDate->format('Y-m-d H:i:s');
+        // Fetch all tasks for this client in the next 3 months
+        $sql = "SELECT sl FROM tasklist 
+                WHERE client_id='$client_id' 
+                AND work_date BETWEEN '".$startDate->format('Y-m-d H:i:s')."' AND '".$endDate->format('Y-m-d H:i:s')."' 
+                ORDER BY work_date ASC";
+        $result = mysqli_query($conn, $sql);
 
-            $sql = "UPDATE tasklist 
-                    SET work_date='$work_date', status='$status', team_member1='$team_member1', team_member2='$team_member2' 
-                    WHERE client_id='$client_id' AND work_date='$work_date'";
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $sl = $row['sl']; // primary key of task
 
-            if (!mysqli_query($conn, $sql)) {
-                $success = false;
-                break;
+                $work_date = $currentDate->format('Y-m-d H:i:s');
+
+                // Update by primary key instead of work_date
+                $update = "UPDATE tasklist 
+                           SET work_date='$work_date', 
+                               status='$status', 
+                               notes='$notes',
+                               team_member1='$team_member1', 
+                               team_member2='$team_member2' 
+                           WHERE sl='$sl' AND client_id='$client_id'";
+
+                if (!mysqli_query($conn, $update)) {
+                    $success = false;
+                    break;
+                }
+
+                // move to next week/fortnight
+                $currentDate->add($interval);
             }
-
-            $currentDate->add($interval);
         }
 
         if ($success) {
@@ -145,6 +162,29 @@ function addTask($secret_key, $conn, $formData) {
         } else {
             $user_id = "MopzillaClient" . ($rowcount + 1);
         }
+       // Fetch all existing customer IDs
+        $existing_ids = [];
+        $sql = "SELECT customer_id FROM client";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $existing_ids[] = $row['customer_id'];
+            }
+        }
+
+        // Generate new unique ID
+        $rowcount = count($existing_ids);
+        do {
+            $rowcount++;
+            if ($rowcount <= 9) {
+                $user_id = "MopzillaClient00" . $rowcount;
+            } elseif ($rowcount <= 99) {
+                $user_id = "MopzillaClient0" . $rowcount;
+            } else {
+                $user_id = "MopzillaClient" . $rowcount;
+            }
+        } while (in_array($user_id, $existing_ids));
 
         $sql = "INSERT INTO client (name, contact, address, customer_id, customer_type, promo_available) 
                 VALUES ('" . $customername . "','" . $customercontact . "', '" . $formData['customeraddress'] . "','$user_id','1','1')";
@@ -188,9 +228,6 @@ function addTask($secret_key, $conn, $formData) {
     }
 }
 
-
-
-
 function getTaskData($conn, $usertype){
     
     if($usertype == 1){
@@ -230,4 +267,82 @@ function getTasksDataByClient($conn, $clientid){
     }
     return $taskData;
 }
+
+if(isset($_POST['submit_invoice'])){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        global $base_url;
+        $team_id = $_POST['team_id'];
+        $monday=$_POST['monday'];
+        $tuesday=$_POST['tuesday'];
+        $wednesday=$_POST['wednesday'];
+        $thursday=$_POST['thursday'];
+        $friday=$_POST['friday'];
+        $total = $monday + $tuesday + $wednesday + $thursday + $friday;
+        $total = $_POST['total'];
+        $sql="INSERT INTO invoice_team (team_id, monday, tuesday, wednesday, thursday, friday, total, status) 
+                VALUES ('$team_id', '$monday', '$tuesday', '$wednesday', '$thursday', '$friday', '$total', 1)";
+        if (mysqli_query($conn, $sql)) {
+            header("location:".$base_url."public/views/team_dashboard/invoice.php?success=Invoice added successfully");
+            exit();
+        } else {
+            header("location:".$base_url."public/views/team_dashboard/invoice.php?error=Error adding invoice: ");
+            exit();
+        }
+    }
+}
+
+if(isset($_POST['approve_invoice']) || isset($_POST['reject_invoice']) || isset($_POST['paid_invoice'])){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        global $base_url;
+        $invoice_id = $_POST['invoice_id'];
+        if(isset($_POST['approve_invoice'])){
+            $txid = $_POST['txid'];
+            $sql = "UPDATE invoice_team SET status='2' WHERE sl='$invoice_id'";
+            if (mysqli_query($conn, $sql)) {
+                header("location:".$base_url."public/views/team_dashboard/invoice.php?success=Invoice marked as approved successfully");
+                exit();
+            } else {
+                header("location:".$base_url."public/views/team_dashboard/invoice.php?error=Error marking invoice as approved: ");
+                exit();
+            }
+        } elseif(isset($_POST['reject_invoice'])){
+            $sql = "UPDATE invoice_team SET status='4' WHERE sl='$invoice_id'";
+            if (mysqli_query($conn, $sql)) {
+                header("location:".$base_url."public/views/team_dashboard/invoice.php?success=Invoice rejected successfully");
+                exit();
+            } else {
+                header("location:".$base_url."public/views/team_dashboard/invoice.php?error=Error rejecting invoice: ");
+                exit();
+            }
+        }
+        elseif(isset($_POST['paid_invoice'])){
+            $txid = $_POST['txid'];
+            if(empty($txid)){
+                header("location:".$base_url."public/views/team_dashboard/invoice.php?error=TxID cannot be empty");
+                exit();
+            }
+            $sql = "UPDATE invoice_team SET status='3', txid='$txid' WHERE sl='$invoice_id'";
+            if (mysqli_query($conn, $sql)) {
+                header("location:".$base_url."public/views/team_dashboard/invoice.php?success=Invoice marked as paid successfully");
+                exit();
+            } else {
+                header("location:".$base_url."public/views/team_dashboard/invoice.php?error=Error marking invoice as paid: ");
+                exit();
+            }
+        }
+    }
+
+}
+function getallinvoiceteam($conn){
+    $sql="select * from invoice_team Order By submitdate DESC";
+    $result=mysqli_query($conn,$sql);
+    $invoiceData=array();
+    if($result && mysqli_num_rows($result)>0){
+        while($row=mysqli_fetch_assoc($result)){
+            $invoiceData[]=$row;
+        }
+    }
+    return $invoiceData;
+}
+
 ?>

@@ -26,11 +26,13 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] === '1') {
 
 <div class="box">
     <div class="list_team">
-        <?php if ($clientallData && count($clientallData) > 0): ?>
+        <?php 
+        if ($clientallData && count($clientallData) > 0): ?>
             <div class="table-responsive">
                 <table class="table table-bordered" border="1" cellpadding="10" cellspacing="0">
                     <thead>
                     <tr style="background-color: #f5f5f5;">
+                        
                         <th>Name</th>
                         <th>Address</th>
                         <th>Contact</th>
@@ -75,7 +77,10 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] === '1') {
                                                         $sl++;
                                                     ?>
                                                 </li>
-                                            <?php endforeach; ?>
+                                                
+                                            <?php
+                                        endforeach; 
+                                        ?>
                                         </ul>
                                     </div>
                                 <?php else: ?>
@@ -92,7 +97,9 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] === '1') {
 
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php 
+                endforeach;
+                 ?>
                     </tbody>
                 </table>
             </div>

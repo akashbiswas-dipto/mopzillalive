@@ -2,15 +2,14 @@
 include_once("navbar.php");
 
 if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION['usertype'] === '2')) {
-    if(empty($_POST) || (isset($_POST['client_id']) && $_POST['client_id'] === 'all')){
+    if (empty($_POST) || (isset($_POST['client_id']) && $_POST['client_id'] === 'all')) {
         $taskData = getTaskData($conn, $_SESSION['usertype']);
-        
-    } elseif(isset($_POST['client_id']) && !empty($_POST['client_id'])){
-        $clientid=$_POST['client_id'];
+    } elseif (isset($_POST['client_id']) && !empty($_POST['client_id'])) {
+        $clientid = $_POST['client_id'];
         $taskData = getTasksDataByClient($conn, $clientid);
-        $_SESSION['clientid']=$_POST['client_id'];
-        //print_r($taskData);
+        $_SESSION['clientid'] = $_POST['client_id'];
     }
+
     // Mapping for work type
     $workTypeMap = [
         1 => 'Weekly',
@@ -38,9 +37,7 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
                 <option value="all" <?php echo (!isset($_GET['client_id']) || $_GET['client_id'] == 'all') ? 'selected' : ''; ?>>All Customers</option>
                 <?php
                 $clients = mysqli_query($conn, "SELECT * FROM client ORDER BY name ASC");
-                
                 while ($client = mysqli_fetch_assoc($clients)) {
-                    print_r($client);
                     echo "<option value='{$client['customer_id']}'>{$client['name']}</option>";
                 }
                 ?>
@@ -55,14 +52,21 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
             <?php if ($taskData && count($taskData) > 0): ?>
                 <?php
                 $weeklyTasks = [];
+                $today = new DateTime();
 
-                // Group tasks by week starting Monday
+                // Group tasks by week starting Monday, skip past weeks
                 foreach ($taskData as $task) {
                     $date = new DateTime($task['work_date']);
                     $monday = clone $date;
                     $monday->modify('Monday this week');
-                    $weekKey = $monday->format('Y-m-d'); // Monday date as key
-                    $weeklyTasks[$weekKey][] = $task;
+                    $sunday = clone $monday;
+                    $sunday->modify('+6 days');
+
+                    // Include only ongoing or future weeks
+                    if ($sunday >= $today) {
+                        $weekKey = $monday->format('Y-m-d'); // Monday date as key
+                        $weeklyTasks[$weekKey][] = $task;
+                    }
                 }
 
                 // Sort weeks chronologically
@@ -79,12 +83,11 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
                         // Calculate weekly total
                         $weeklyTotal = 0;
                         foreach ($tasksInWeek as $task) {
-                            if($_SESSION['usertype'] === '1'){
-                            $weeklyTotal += ($task['workinghour'] * $task['hourly_rate']) + $task['agency_fee'];}
-                            elseif($_SESSION['usertype'] === '2'){
+                            if ($_SESSION['usertype'] === '1') {
+                                $weeklyTotal += ($task['workinghour'] * $task['hourly_rate']) + $task['agency_fee'];
+                            } elseif ($_SESSION['usertype'] === '2') {
                                 $weeklyTotal += (($task['workinghour']/2) * 22.5);
                             }
-                            
                         }
                     ?>
                     <h4 class="text-primary" style="color: #234f1E !important;">
@@ -134,9 +137,13 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
                                 <td>$<?php echo number_format($task['hourly_rate'], 2); ?></td>
                                 <td>$<?php echo number_format($task['agency_fee'], 2); ?></td>
                                 <td>$<?php echo number_format($total, 2); ?></td>
+                                <td>
+                                    <textarea name="notes" class="form-control" rows="2"><?= htmlspecialchars($task['notes']) ?></textarea>
+                                </td>
                                 <?php } ?>
                                 
-                                <td><?php echo $task['notes']; ?></td>
+                                <?php if($_SESSION['usertype'] === '2') {
+                                    echo '<td>'.$task['notes'].'</td>'; } ?>
                                 <td><?php echo $date->format('l'); ?></td>
                                <?php if($_SESSION['usertype'] === '1'): ?>
                                     <td>
@@ -184,7 +191,7 @@ if (isset($_SESSION['usertype']) && ($_SESSION['usertype'] === '1' || $_SESSION[
                                     <input type="hidden" name="work_type" value="<?php echo $task['work_type']; ?>">
 
                                     <div class="dropdown">
-                                        <div class="dropbtn">Actions ▾</button>
+                                        <div class="dropbtn">Actions ▾</div>
                                         <div class="dropdown-content">
                                             <button type="submit" name="update_task" value="<?php echo $task['sl']; ?>">Update</button>
                                             <button type="submit" name="update_task_all" value="<?php echo $task['sl']; ?>">Update All Task</button>
